@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+__pycache__/
+.vscode/
+dataset/
+indian_plates/
+archive/
+MosaicPS2.rar
+models/train-classifier.ipynb
+data/*.zip
