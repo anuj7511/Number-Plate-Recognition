@@ -28,7 +28,8 @@ def segmentAndReadPlate(
     
     if plate is None:
         plate = get_random_plate()
-    elif type(plate)==str:
+    elif type(plate)==str:  # license_plate.png
+        plate_name = plate[::-1].split(".",1)[1].split("\\", 1)[0][::-1]  # license_plate
         plate = cv2.imread(plate)
     
     if verbose>=3: 
@@ -47,6 +48,7 @@ def segmentAndReadPlate(
     
     char = segment_characters(
         plate, 
+        plate_name,
         clahe_clipLimit=clahe_clipLimit, 
         clahe_tileGridSize=clahe_tileGridSize, 
         erosion_iters=erosion_iters, 
@@ -60,12 +62,16 @@ def segmentAndReadPlate(
     
     if verbose>=1:
         plt.figure()
+        plt.ion()
         for i in range(len(fixed_char)):
             fig = plt.subplot(1, len(fixed_char), i+1)
             fig.imshow(fixed_char[i], cmap=plt.cm.binary)
             fig.set_title(preds[i])
             fig.axis('off')
-        plt.show()
+        plt.ioff()
+        plt.savefig(f"./results/{plate_name}_preds.jpg")
+        plt.pause(1)
+        plt.close()
     if return_results:
         return preds    
 
@@ -90,8 +96,8 @@ if __name__ == '__main__':
     
     test_images = glob('test_pics/t*.png')
     test_images = sorted(test_images, key=lambda x:int(x.split('.')[-2].split('t')[-1]))
-        
-    for plate in test_images:
+    
+    for plate in test_images[:1]:
         print(plate)
         pred = completePipeline(plate)
         print('*'*50+'\n'*4)

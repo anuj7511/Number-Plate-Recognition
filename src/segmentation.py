@@ -5,7 +5,7 @@ from utils import get_random_plate, display
 
 
 
-def segment_characters(image, clahe_clipLimit=3, clahe_tileGridSize=8, erosion_iters=1, dilation_iters=2, display_verbose=1):
+def segment_characters(image, plate_name, clahe_clipLimit=3, clahe_tileGridSize=8, erosion_iters=1, dilation_iters=2, display_verbose=1):
     '''
     Input: image is an BGR image of (better if perspectively transformed) license plate
     Returns: a list of all contours segmented as a character of Plate Number
@@ -35,11 +35,11 @@ def segment_characters(image, clahe_clipLimit=3, clahe_tileGridSize=8, erosion_i
         plt.show()
 
     # Get contours within cropped license plate
-    char_list = find_contours(dimensions, img_binary_lp, display_verbose)
+    char_list = find_contours(dimensions, plate_name, img_binary_lp, display_verbose)
     return char_list
 
 
-def find_contours(dimensions, img, display_verbose=1) :
+def find_contours(dimensions, plate_name, img, display_verbose=1) :
     '''
     Filters and returns characters contours from other noise
     '''
@@ -81,6 +81,8 @@ def find_contours(dimensions, img, display_verbose=1) :
     upper_Y = sum(meanY)/len(meanY)  + meanHeight*0.75
     
     prev_x = 0
+    plt.figure()
+    plt.ion()
     for intX, intY, intWidth, intHeight in coords :
         
         # checking the dimensions of the contour to filter out the characters by contour's size
@@ -156,8 +158,10 @@ def find_contours(dimensions, img, display_verbose=1) :
                 img_res.append(char) # List that stores the character's binary image (unsorted)
             
     # Return characters on ascending order with respect to the x-coordinate (most-left character first)
-            
-    plt.show()
+    plt.ioff()
+    plt.savefig(f"./results/{plate_name}_chars.jpg")
+    plt.pause(1)
+    plt.close()
     # arbitrary function that stores sorted list of character indeces
     indices = sorted(range(len(x_cntr_list)), key=lambda k: x_cntr_list[k])
     img_res_copy = []
