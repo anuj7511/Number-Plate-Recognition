@@ -1,3 +1,4 @@
-torchmetrics
-wandb
-pytorch_lightning
+opencv-python
+tensorflow-cpu
+matplotlib
+sklearn
