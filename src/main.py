@@ -70,7 +70,7 @@ def segmentAndReadPlate(
             fig.set_title(preds[i])
             fig.axis('off')
         plt.ioff()
-        plt.savefig(f"./results/{plate_name}_preds.jpg")
+        plt.savefig(f"./results/{plate_name.split('/')[-1]}_preds.jpg")
         plt.pause(1)
         plt.close()
     if return_results:
@@ -118,13 +118,23 @@ def completePipeline(plate):
 
 
 if __name__ == "__main__":
+    from argparse import ArgumentParser
+    
+    parser = ArgumentParser()
+    parser.add_argument("--image_path", type=str, default='test_pics/t1.png',help="relative path to plate image")
+    parser.add_argument("--image_folder", type=str, default='test_pics/',help="relative path to image")
+    args = parser.parse_args()
+    
+    print(args.image_path)
+    pred = completePipeline(args.image_path)
+    print("*" * 50 + "\n" * 4)
+    
+    # test_images = glob(args.image_folder)
+    # test_images = sorted(
+    #     test_images, key=lambda x: int(x.split(".")[-2].split("t")[-1])
+    # )
 
-    test_images = glob("test_pics/t*.png")
-    test_images = sorted(
-        test_images, key=lambda x: int(x.split(".")[-2].split("t")[-1])
-    )
-
-    for plate in test_images[:1]:
-        print(plate)
-        pred = completePipeline(plate)
-        print("*" * 50 + "\n" * 4)
+    # for plate in test_images[:1]:
+    #     print(plate)
+    #     pred = completePipeline(plate)
+    #     print("*" * 50 + "\n" * 4)

@@ -245,7 +245,7 @@ def find_contours(dimensions, plate_name, img, display_verbose=1):
 
     # Return characters on ascending order with respect to the x-coordinate (most-left character first)
     plt.ioff()
-    plt.savefig(f"./results/{plate_name}_chars.jpg")
+    plt.savefig(f"./results/{plate_name.split('/')[-1]}_chars.jpg")
     plt.pause(1)
     plt.close()
     # arbitrary function that stores sorted list of character indeces
