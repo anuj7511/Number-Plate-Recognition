@@ -7,7 +7,7 @@ This is our solution repo hosting the code and approach used for Mosaic'21 [PS2]
 <br>
 
 <!-- ![Indian License Plate Explainer](media/IND-license-plate-en.jpg) -->
-<img width = 350 height = 250 src = "media/IND-license-plate-en.jpg">
+<img width = 700 height = 500 src = "media/IND-license-plate-en.jpg">
 
 ## Approach & Optimizations
 
@@ -17,7 +17,7 @@ The whole pipeline is a 3 stage process:
 - Segmentation of Characters from cropped license plate image using openCV
 - character Recognition of Individual contours using a CNN network
 
-A [YOLOv5](#acknowledgements) is used to predict the bounding box around License plate. Then the cropped license plate image is processed including steps:
+A [YOLOv5](#acknowledgements) is used to predict the bounding box around License plate. Then the cropped license plate image is processed using:
 
 - noise removal, extra lines filtering, Adaptive histogram equalization (CLAHE)
 - a four point perspective transform to handle different viewing angles
