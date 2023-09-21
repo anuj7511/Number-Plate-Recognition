@@ -63,12 +63,3 @@ Make predictions
 ## Acknowledgements
 
 - [Ultralytics YOLOv5](https://github.com/ultralytics/yolov5)
-
-## Our Team:
-<table>
-<tr>
-      <td align="center"><a href="https://github.com/lavish619"><img src="https://github.com/lavish619.png" width="100px;" height="100px;" alt="Lavish Bansal"/><br /><sub><b>Lavish Bansal</b></sub></a></td>
-      <td align="center"><a href="https://github.com/arch-raven"><img src="https://github.com/arch-raven.png" width="100px;" height="100px;" alt="Aditya Kumar"/><br /><sub><b>Aditya Kumar</b></a></td>
-      <td align="center"><a href="https://github.com/Ayush2k2"><img src="https://github.com/Ayush2k2.png" width="100px;" height="100px;" alt="Ayush Singh"/><br /><sub><b>Ayush Singh</b></sub></a></td>
-</tr>
-</table>
